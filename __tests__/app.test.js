@@ -22,12 +22,13 @@ describe('03_separation-of-concerns-demo routes', () => {
       .then(res => {
         // expect(createMessage).toHaveBeenCalledTimes(1);
         expect(res.body).toEqual({
-          id: '1',
+          id: 1,
           quantity: 10
         });
       });
   });
 
+  //GET /api/v1/orders
   it('responds with an array of orders via GET', async () => {
     await request(app)
       .post('/api/v1/orders')
@@ -37,12 +38,13 @@ describe('03_separation-of-concerns-demo routes', () => {
       .get('/api/v1/orders/')
       .then(res => {
         expect(res.body).toEqual(expect.arrayContaining([{
-          id: '1',
+          id: 1,
           quantity: 10
         }]));
       });
   });
 
+  //GET /api/v1/orders/:id
   it('GETs an order by id', async () => {
     await request(app)
       .post('/api/v1/orders')
@@ -52,12 +54,13 @@ describe('03_separation-of-concerns-demo routes', () => {
       .get('/api/v1/orders/1')
       .then(res => {
         expect(res.body).toEqual({
-          id: '1',
+          id: 1,
           quantity: 10
         });
       });
   });
 
+  //PATCH /api/v1/orders/:id
   it('returns an updated (patched) order by id', async () => {
     await request(app)
       .post('/api/v1/orders')
@@ -71,12 +74,13 @@ describe('03_separation-of-concerns-demo routes', () => {
       .get('/api/v1/orders/1')
       .then(res => {
         expect(res.body).toEqual({
-          id: '1',
+          id: 1,
           quantity: 50
         });
       });
   });
 
+  //DELETE /api/v1/orders/:id
   it('deletes an order by id and sends 204', async () => {
     await request(app)
       .post('/api/v1/orders')
